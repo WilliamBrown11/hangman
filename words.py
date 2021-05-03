@@ -1,3 +1,16 @@
+import random
+
+
+def get_word():
+    """
+    This returns a word in uppercase from the list.
+
+    :return: a single word in upper case
+    """
+    word = random.choice(word_list)
+    return word.upper()
+
+
 word_list = [
     'wares',
     'soup',

@@ -1,18 +1,16 @@
-import random
 from words import word_list
 
-
-def get_word():
-    word = random.choice(word_list)
-    return word.upper()
-
-
-def play(word):
+def play(word: str = None, tries: int = 6):
+    """
+    Plays the given word
+    :param word:  String, word to play
+    :param tries: Int, number of tries
+    :return:
+    """
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = []
     guessed_words = []
-    tries = 6
     print("Let's play Hangman!")
     print(display_hangman(tries))
     print(word_completion)
@@ -50,6 +48,8 @@ def play(word):
             print("Not a valid guess.")
         print(display_hangman(tries))
         print(word_completion)
+        if len(guessed_letters) > 0:
+            print("Guessed: %s" % ", ".join(guessed_letters))
         print("\n")
     if guessed:
         print("Congrats, you guessed the word! You win!")
@@ -130,15 +130,3 @@ def display_hangman(tries):
                 """
     ]
     return stages[tries]
-
-
-def main():
-    word = get_word()
-    play(word)
-    while input("Play Again? (Y/N) ").upper() == "Y":
-        word = get_word()
-        play(word)
-
-
-if __name__ == "__main__":
-    main()
